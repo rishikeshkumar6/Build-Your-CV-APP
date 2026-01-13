@@ -1,0 +1,26 @@
+import {
+  Download,
+  Github,
+  Mail,
+  Linkedin,
+  ChevronRight,
+  ChevronLeft,
+  Check,
+  Plus,
+  Trash2,
+  User,
+  Briefcase,
+  GraduationCap,
+  Code,
+  FileText,
+  Award,
+} from "lucide-react";
+export const steps = [
+  { id: 0, name: "Personal Info", icon: User },
+  { id: 1, name: "Summary", icon: FileText },
+  { id: 2, name: "Experience", icon: Briefcase },
+  { id: 3, name: "Projects", icon: Award },
+  { id: 4, name: "Education", icon: GraduationCap },
+  { id: 5, name: "Skills", icon: Code },
+  { id: 6, name: "Preview", icon: Code },
+];

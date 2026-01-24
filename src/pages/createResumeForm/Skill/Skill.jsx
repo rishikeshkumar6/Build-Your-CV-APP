@@ -28,7 +28,6 @@ const Skill = ({
       initialValues={skills}
       validationSchema={skillsSchema}
       onSubmit={(fields) => {
-        alert(JSON.stringify(fields));
         setSkills(fields);
         handleNext();
         setSKillFill(true);

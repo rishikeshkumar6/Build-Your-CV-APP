@@ -44,7 +44,6 @@ const Exprience = ({
       enableReinitialize={true}
       initialValues={experiences}
       onSubmit={(fields) => {
-        alert(JSON.stringify(fields));
         handleNext();
         setExperiences(fields);
         setExprienceFill(true);
@@ -217,7 +216,7 @@ const Exprience = ({
                           placeholder="Describe your achievement or responsibility..."
                         />
                         {console.log(
-                          `checking responsibilty ${errors?.experiences}`
+                          `checking responsibilty ${errors?.experiences}`,
                         )}
                         {exp.responsibilities.length > 1 && (
                           <button
@@ -228,7 +227,7 @@ const Exprience = ({
                                 expIndex,
                                 respIndex,
                                 values,
-                                setFieldValue
+                                setFieldValue,
                               )
                             }
                           >

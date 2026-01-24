@@ -24,7 +24,6 @@ const Summary = ({
       initialValues={summary}
       validationSchema={summarySchema}
       onSubmit={(fields) => {
-        alert(JSON.stringify(fields));
         setSummary(fields);
         handleNext();
         setSummaryFill(true);

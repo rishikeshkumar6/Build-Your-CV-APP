@@ -9,8 +9,6 @@ const Login = ({ login, setLogin, handleLogin }) => {
       initialValues={login}
       validationSchema={loginSchema}
       onSubmit={(fields) => {
-        alert(JSON.stringify(fields));
-        console.log("fields", fields);
         handleLogin(fields);
       }}
       validateOnChange={false}

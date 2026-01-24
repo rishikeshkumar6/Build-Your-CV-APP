@@ -9,8 +9,6 @@ const Signup = ({ signup, setSignup, handleSignup }) => {
       initialValues={signup}
       validationSchema={signupSchema}
       onSubmit={(fields) => {
-        alert(JSON.stringify(fields));
-        console.log("fields", fields);
         handleSignup(fields);
       }}
     >

@@ -44,7 +44,6 @@ const Projects = ({
       initialValues={projects}
       validationSchema={ProjectsSchema}
       onSubmit={(fields) => {
-        alert(JSON.stringify(fields));
         handleNext();
         setProjects(fields);
         setProjectFill(true);

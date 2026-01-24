@@ -43,7 +43,6 @@ const Education = ({
       initialValues={education}
       validationSchema={educationSchema}
       onSubmit={(fields) => {
-        alert(JSON.stringify(fields));
         handleNext();
         setEducation(fields);
         setEducationFill(true);

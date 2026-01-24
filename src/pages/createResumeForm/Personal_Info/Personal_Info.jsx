@@ -28,7 +28,6 @@ const Personal_Info = ({
       initialValues={personalInfo}
       validationSchema={personalInfoSchema}
       onSubmit={(fields) => {
-        alert(JSON.stringify(fields));
         handleNext();
         setPersonalInfo(fields);
         setPersonalInfoFill(true);

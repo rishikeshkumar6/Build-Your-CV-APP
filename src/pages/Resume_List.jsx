@@ -6,8 +6,12 @@ import {
 } from "../Redux/services/userService";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Resume_List = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [deleteResume, { isLoading, isSuccess, data, isError, error }] =
     useDeleteResumeMutation();
   const {
@@ -30,7 +34,29 @@ const Resume_List = () => {
     }
   };
   return (
-    <>
+    <div>
+      <div className="flex justify-end mt-5">
+        <div className="flex gap-4 md:ml-auto mr-5">
+          <button
+            type="button"
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition shadow-lg"
+          >
+            <Link to="/builder">Add Resume</Link>
+          </button>
+          <button
+            type="button"
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition shadow-lg"
+            onClick={() => {
+              localStorage.clear("token");
+              dispatch({ type: "auth/logout" });
+              navigate("/login");
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8">
         {allResumesSuccess &&
           allResumes?.data?.map(
@@ -49,7 +75,7 @@ const Resume_List = () => {
                   resume={resume}
                 />
               )
-            )
+            ),
           )}
       </div>
       {isAllResumesError && allResumesError?.status === 404 && (
@@ -73,7 +99,7 @@ const Resume_List = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

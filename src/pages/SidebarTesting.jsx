@@ -13,6 +13,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Skeleton from "react-loading-skeleton";
 import Logo from "./Logo";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SidebarTesting = ({
   currentStep,
@@ -26,6 +28,8 @@ const SidebarTesting = ({
   isSkillFill,
   isPreviewFill,
 }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const mangeSidebar = (id, isFormSubmit) => {
     if (isFormSubmit) {
       setCurrentStep(id);
@@ -174,7 +178,15 @@ const SidebarTesting = ({
       </div>
 
       <div className="px-6 flex justify-between gap-5 items-center">
-        <button className="bg-gray-200 px-8 py-3 rounded-md font-bold">
+        <button
+          className="bg-gray-200 px-8 py-3 rounded-md font-bold"
+          type="button"
+          onClick={() => {
+            localStorage.clear("token");
+            dispatch({ type: "auth/logout" });
+            navigate("/login");
+          }}
+        >
           Logout
         </button>
       </div>

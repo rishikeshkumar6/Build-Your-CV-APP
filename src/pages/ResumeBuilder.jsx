@@ -228,7 +228,7 @@ const ResumeBuilder = () => {
   useEffect(() => {
     if (isSingleResumeSuccess && singleResumeData?.statusCode === 200) {
       setPersonalInfoFill(
-        singleResumeData?.data[0]?.is_personalinfo_fill || false
+        singleResumeData?.data[0]?.is_personalinfo_fill || false,
       );
       setSummaryFill(singleResumeData?.data[0]?.is_summary_fill || false);
       setExprienceFill(singleResumeData?.data[0]?.is_experience_fill || false);
@@ -319,7 +319,7 @@ const ResumeBuilder = () => {
     console.log("remove exprince index", id, "values", values);
     let value = { ...values };
     value.experiences = value?.experiences?.filter(
-      (elem, index) => index !== id
+      (elem, index) => index !== id,
     );
     setFieldValue("experiences", value?.experiences);
   };
@@ -328,7 +328,7 @@ const ResumeBuilder = () => {
     setFormData({
       ...formData,
       experiences: formData.experiences.map((exp) =>
-        exp.id === id ? { ...exp, [field]: value } : exp
+        exp.id === id ? { ...exp, [field]: value } : exp,
       ),
     });
   };
@@ -348,10 +348,10 @@ const ResumeBuilder = () => {
           ? {
               ...exp,
               responsibilities: exp.responsibilities.map((resp, i) =>
-                i === index ? value : resp
+                i === index ? value : resp,
               ),
             }
-          : exp
+          : exp,
       ),
     });
   };
@@ -361,7 +361,7 @@ const ResumeBuilder = () => {
     const deleteResponsibility = JSON.parse(JSON.stringify(values));
     deleteResponsibility.experiences[expId].responsibilities =
       deleteResponsibility.experiences[expId].responsibilities.filter(
-        (elem, index) => index !== id
+        (elem, index) => index !== id,
       );
     setFieldValue("experiences", deleteResponsibility.experiences);
   };
@@ -383,7 +383,7 @@ const ResumeBuilder = () => {
     console.log("remove project function is invoke");
     const project = { ...values };
     project.projects = project.projects.filter(
-      (proj, index) => index !== projIndex
+      (proj, index) => index !== projIndex,
     );
     setFieldValue("projects", project.projects);
   };
@@ -392,7 +392,7 @@ const ResumeBuilder = () => {
     setFormData({
       ...formData,
       projects: formData.projects.map((proj) =>
-        proj.id === id ? { ...proj, [field]: value } : proj
+        proj.id === id ? { ...proj, [field]: value } : proj,
       ),
     });
   };
@@ -413,7 +413,7 @@ const ResumeBuilder = () => {
     console.log("remove education function is invoke");
     const education = { ...values };
     education.education = education.education.filter(
-      (edu, index) => index !== eduIndex
+      (edu, index) => index !== eduIndex,
     );
     setFieldValue("education", education.education);
   };
@@ -422,7 +422,7 @@ const ResumeBuilder = () => {
     setFormData({
       ...formData,
       education: formData.education.map((edu) =>
-        edu.id === id ? { ...edu, [field]: value } : edu
+        edu.id === id ? { ...edu, [field]: value } : edu,
       ),
     });
   };
@@ -453,7 +453,7 @@ const ResumeBuilder = () => {
   return (
     <div className="">
       <div className="flex flex-col md:flex-row">
-        {false && (
+        {true && (
           <SidebarTesting
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}

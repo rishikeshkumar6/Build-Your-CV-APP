@@ -32,7 +32,6 @@ const Router = () => {
     skip: !localStorage.getItem("token"),
   });
   //public route
-
   const PublicRoutes = () => {
     console.log(localStorage.getItem("token") && isSuccess);
     if (localStorage.getItem("token")) {

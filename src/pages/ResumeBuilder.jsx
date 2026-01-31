@@ -31,7 +31,6 @@ const ResumeBuilder = () => {
   //id get from url params
   const { id } = useParams();
   const nav = useNavigate();
-  console.log("resume id checking", id);
   //create resume mutation hook
   const [createResume, { data, isLoading, isError, isSuccess, error }] =
     useCreateResumeMutation(id);
@@ -54,7 +53,6 @@ const ResumeBuilder = () => {
     error: singleResumeError,
   } = useGetSingleResumeQuery(id, { skip: !id });
 
-  console.log("single resume data", singleResumeData);
   //stepper state and form submission state
   const [currentStep, setCurrentStep] = useState(0);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -68,7 +66,6 @@ const ResumeBuilder = () => {
   const [isPreviewFill, setPreviewFill] = useState(false);
   const [editMode, setEditMode] = useState(id ? true : false);
 
-  console.log("edit mode checking", editMode);
   //Personal Info State
   const [personalInfo, setPersonalInfo] = useState({
     fullName: "",
@@ -220,7 +217,6 @@ const ResumeBuilder = () => {
       const errorMessages = error?.data?.detail
         ?.map((err) => `${err.loc[1]}: ${err.msg}`)
         .join(", ");
-      console.log("Validation Errors:", errorMessages);
       toast.error("An Internal Server Error Occurred");
     }
   }, [isError, error]);
@@ -262,16 +258,12 @@ const ResumeBuilder = () => {
       };
       setIsFormSubmitted(true);
       const response = await createResume(obj);
-      console.log("reponse checking", response?.data?.statusCode);
       if (response?.data?.statusCode === 201) {
         toast.success(response?.data?.message || "Resume Created Successfully");
         nav("/resume_list");
       }
-      console.log("try is running");
     } catch (err) {
       toast.error("An Internal Server Error Occurred");
-      console.log("error in submit resume", err);
-      console.log("catch is running");
     }
   };
 
@@ -288,16 +280,13 @@ const ResumeBuilder = () => {
       };
       setIsFormSubmitted(true);
       const response = await updateResume(obj);
-      console.log("reponse checking", response?.data?.statusCode);
       if (response?.data?.statusCode === 201) {
         toast.success(response?.data?.message || "Resume Updated Successfully");
         nav("/resume_list");
       }
-      console.log("try is running");
     } catch (err) {
       toast.error("An Internal Server Error Occurred");
-      console.log("error in submit resume", err);
-      console.log("catch is running");
+      console.error(err);
     }
   };
 
@@ -453,7 +442,7 @@ const ResumeBuilder = () => {
   return (
     <div className="">
       <div className="flex flex-col md:flex-row">
-        {true && (
+        {false && (
           <SidebarTesting
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}

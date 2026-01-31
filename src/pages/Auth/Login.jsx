@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, ErrorMessage, Field, Form } from "formik";
 import { loginSchema } from "./userAuthSchema";
 import * as Yup from "yup";
-const Login = ({ login, setLogin, handleLogin }) => {
+const Login = ({ login, setLogin, handleLogin, isLoginUserLoading }) => {
   return (
     <Formik
       enableReinitialize={true}
@@ -71,10 +71,9 @@ const Login = ({ login, setLogin, handleLogin }) => {
               type="submit"
               className="group cursor-pointer relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
             >
-              Sign in
+              {`${isLoginUserLoading ? "Loading..." : "Sign in"}`}
             </button>
           </div>
-          {console.log("errors", errors)}
         </Form>
       )}
     </Formik>

@@ -12,11 +12,14 @@ import Login from "./Login";
 export default function AuthPanel({ onAuthSuccess }) {
   const navigate = useNavigate();
   //user create api mutation hook
-  const [createUser, { data, isSuccess, isError, error }] =
-    useCreateUserMutation();
+  const [
+    createUser,
+    { isLoading: isCreateUserLoading, data, isSuccess, isError, error },
+  ] = useCreateUserMutation();
   const [
     loginUser,
     {
+      isLoading: isLoginUserLoading,
       data: loginData,
       isSuccess: isLoginSuccess,
       isError: isLoginError,
@@ -42,7 +45,6 @@ export default function AuthPanel({ onAuthSuccess }) {
   const handleSignup = async (data) => {
     try {
       const response = await createUser(data).unwrap();
-      console.log("signup response", response);
       if (response && response?.statusCode === 201) {
         toast.success("User created successfully! Please login.");
       }
@@ -56,11 +58,8 @@ export default function AuthPanel({ onAuthSuccess }) {
   //handle login function
   const handleLogin = async (data) => {
     try {
-      console.log("login data", data);
       const response = await loginUser(data).unwrap();
-      console.log("signin response", response);
       if (response && response?.token) {
-        console.log("token is invoked", response?.token);
         localStorage.setItem("token", response?.token);
         navigate("/resume_list");
       }
@@ -151,6 +150,7 @@ export default function AuthPanel({ onAuthSuccess }) {
                 signup={signup}
                 setSignup={setSignup}
                 handleSignup={handleSignup}
+                isCreateUserLoading={isCreateUserLoading}
               />
             )}
 
@@ -159,6 +159,7 @@ export default function AuthPanel({ onAuthSuccess }) {
                 login={login}
                 setLogin={setLogin}
                 handleLogin={handleLogin}
+                isLoginUserLoading={isLoginUserLoading}
               />
             )}
 

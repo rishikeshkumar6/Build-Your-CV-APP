@@ -20,8 +20,14 @@ import ResumeEditor from "../pages/ResumeEditor";
 import SidebarTesting from "../pages/SidebarTesting";
 import Resume from "../pages/Resume";
 import ResumeCard from "../pages/Resume_List";
+//rtk query hook
 import { useGetUserQuery } from "../Redux/services/userService";
+//react-redux hook
+import { useDispatch } from "react-redux";
+//api reducer of rtk query
+import { api } from "../Redux/services/userService";
 const Router = () => {
+  const dispatch = useDispatch();
   const {
     data: userData,
     isLoading,
@@ -30,6 +36,7 @@ const Router = () => {
     error,
   } = useGetUserQuery(undefined, {
     skip: !localStorage.getItem("token"),
+    refetchOnMountOrArgChange: true,
   });
   //public route
   const PublicRoutes = () => {
@@ -45,6 +52,7 @@ const Router = () => {
     if (!localStorage.getItem("token")) {
       return <Navigate to="/login" />;
     }
+    //check if our token is invalid or expire then it is remove the token on our local storage and navigate to login
     if (
       isError &&
       error?.status === 401 &&
@@ -53,6 +61,7 @@ const Router = () => {
     ) {
       console.log("Unauthorized, logging out user.");
       localStorage.removeItem("token");
+      dispatch(api.util.removeQueryResult("getResume", undefined));
       return <Navigate to="/login" />;
     }
     return <Outlet />;

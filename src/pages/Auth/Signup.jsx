@@ -1,8 +1,7 @@
 import React from "react";
 import { Formik, ErrorMessage, Field, Form } from "formik";
 import { signupSchema } from "./userAuthSchema";
-const Signup = ({ signup, setSignup, handleSignup }) => {
-  console.log("<<<<<signup Form>>>>>", signup);
+const Signup = ({ signup, setSignup, handleSignup, isCreateUserLoading }) => {
   return (
     <Formik
       enableReinitialize={true}
@@ -57,10 +56,9 @@ const Signup = ({ signup, setSignup, handleSignup }) => {
               disabled={false}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
             >
-              Sign up
+              {`${isCreateUserLoading ? "Loading..." : "Sign up"}`}
             </button>
           </div>
-          {console.log("values", values, "errors", errors)}
         </Form>
       )}
     </Formik>

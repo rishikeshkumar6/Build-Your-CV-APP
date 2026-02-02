@@ -1,21 +1,5 @@
-import React, { useEffect } from "react";
-import {
-  Download,
-  Github,
-  Mail,
-  Linkedin,
-  ChevronRight,
-  ChevronLeft,
-  Check,
-  Plus,
-  Trash2,
-  User,
-  Briefcase,
-  GraduationCap,
-  Code,
-  FileText,
-  Award,
-} from "lucide-react";
+import React from "react";
+import { Plus, Trash2 } from "lucide-react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import { ProjectsSchema } from "./Projects_Schema";
 import { use } from "react";
@@ -27,16 +11,7 @@ const Projects = ({
   setProjectFill,
   addProject,
   removeProject,
-  isSingleResumeSuccess,
-  singleResumeData,
 }) => {
-  useEffect(() => {
-    if (isSingleResumeSuccess && singleResumeData?.statusCode === 200) {
-      setProjects({
-        projects: singleResumeData?.data[0]?.projects || [],
-      });
-    }
-  }, [isSingleResumeSuccess, singleResumeData]);
   console.log(projects);
   return (
     <Formik

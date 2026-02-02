@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import { personalInfoSchema } from "./Personal_Info_Schema";
 const Personal_Info = ({
@@ -6,22 +6,9 @@ const Personal_Info = ({
   setPersonalInfo,
   handleNext,
   setPersonalInfoFill,
-  isSingleResumeSuccess,
-  singleResumeData,
 }) => {
   //populate form if single resume data is available
-  useEffect(() => {
-    if (isSingleResumeSuccess && singleResumeData?.statusCode === 200) {
-      setPersonalInfo({
-        fullName: singleResumeData?.data[0].full_name || "",
-        title: singleResumeData?.data[0].title || "",
-        email: singleResumeData?.data[0].email || "",
-        github: singleResumeData?.data[0].github || null,
-        linkedin: singleResumeData?.data[0].linkedin || null,
-        portfolio: singleResumeData?.data[0].portfolio || null,
-      });
-    }
-  }, [isSingleResumeSuccess, singleResumeData]);
+
   return (
     <Formik
       enableReinitialize={true}

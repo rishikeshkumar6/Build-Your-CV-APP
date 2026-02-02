@@ -1,21 +1,5 @@
-import React, { useEffect } from "react";
-import {
-  Download,
-  Github,
-  Mail,
-  Linkedin,
-  ChevronRight,
-  ChevronLeft,
-  Check,
-  Plus,
-  Trash2,
-  User,
-  Briefcase,
-  GraduationCap,
-  Code,
-  FileText,
-  Award,
-} from "lucide-react";
+import React from "react";
+import { Plus, Trash2 } from "lucide-react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import { exprienceSchema } from "./Exprience_Schema";
 const Exprience = ({
@@ -28,16 +12,7 @@ const Exprience = ({
   addResponsibility,
   removeResponsibility,
   setExprienceFill,
-  isSingleResumeSuccess,
-  singleResumeData,
 }) => {
-  useEffect(() => {
-    if (isSingleResumeSuccess && singleResumeData?.statusCode === 200) {
-      setExperiences({
-        experiences: singleResumeData?.data[0]?.experiences || [],
-      });
-    }
-  }, [isSingleResumeSuccess, singleResumeData]);
   console.log(experiences);
   return (
     <Formik

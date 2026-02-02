@@ -126,7 +126,7 @@ const SidebarTesting = ({
                       className={`flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full mr-3 transition-all font-medium text-sm  shadow-sm bg-secondary text-white shadow-sm  ${
                         !elem.isFormSubmit
                           ? index === currentStep
-                            ? ""
+                            ? "bg-gray-300"
                             : "bg-gray-300"
                           : "bg-green-600 text-white"
                       }  border-gray-100`}

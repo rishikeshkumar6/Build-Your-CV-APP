@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import skillsSchema from "./Skill_Schema";
 const Skill = ({
@@ -8,20 +8,7 @@ const Skill = ({
   handleNext,
   handleSubmit,
   setSKillFill,
-  isSingleResumeSuccess,
-  singleResumeData,
 }) => {
-  useEffect(() => {
-    if (isSingleResumeSuccess && singleResumeData?.statusCode === 200) {
-      setSkills({
-        frontend: singleResumeData?.data[0]?.frontend || "",
-        backend: singleResumeData?.data[0]?.backend || "",
-        database: singleResumeData?.data[0]?.database || "",
-        other: singleResumeData?.data[0]?.other || "",
-      });
-    }
-  }, [isSingleResumeSuccess, singleResumeData]);
-  console.log(skills);
   return (
     <Formik
       enableReinitialize={true}

@@ -1,21 +1,5 @@
-import React, { useEffect } from "react";
-import {
-  Download,
-  Github,
-  Mail,
-  Linkedin,
-  ChevronRight,
-  ChevronLeft,
-  Check,
-  Plus,
-  Trash2,
-  User,
-  Briefcase,
-  GraduationCap,
-  Code,
-  FileText,
-  Award,
-} from "lucide-react";
+import React from "react";
+import { Plus, Trash2 } from "lucide-react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import educationSchema from "./Educations_Schema";
 const Education = ({
@@ -26,17 +10,7 @@ const Education = ({
   setEducationFill,
   addEducation,
   removeEducation,
-  isSingleResumeSuccess,
-  singleResumeData,
 }) => {
-  useEffect(() => {
-    if (isSingleResumeSuccess && singleResumeData?.statusCode === 200) {
-      setEducation({
-        education: singleResumeData?.data[0]?.education || [],
-      }); //populate education data from single resume data
-    }
-  });
-  console.log(education);
   return (
     <Formik
       enableReinitialize={true}

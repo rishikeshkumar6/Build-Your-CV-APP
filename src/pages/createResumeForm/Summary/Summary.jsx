@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import { summarySchema } from "./Summary_Schema";
 const Summary = ({
@@ -7,17 +7,7 @@ const Summary = ({
   handlePrev,
   handleNext,
   setSummaryFill,
-  isSingleResumeSuccess,
-  singleResumeData,
 }) => {
-  useEffect(() => {
-    if (isSingleResumeSuccess && singleResumeData?.statusCode === 200) {
-      setSummary({
-        summary: singleResumeData?.data[0].summary || "",
-      });
-    }
-  }, [isSingleResumeSuccess, singleResumeData]);
-  console.log(summary);
   return (
     <Formik
       enableReinitialize={true}

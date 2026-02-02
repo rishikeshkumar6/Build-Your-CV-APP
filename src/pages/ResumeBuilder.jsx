@@ -232,6 +232,38 @@ const ResumeBuilder = () => {
       setEducationFill(singleResumeData?.data[0]?.is_education_fill || false);
       setSKillFill(singleResumeData?.data[0]?.is_skills_fill || false);
       setPreviewFill(singleResumeData?.data[0]?.is_preview_fill || false);
+      //personal info data populate
+      setPersonalInfo({
+        fullName: singleResumeData?.data[0].full_name || "",
+        title: singleResumeData?.data[0].title || "",
+        email: singleResumeData?.data[0].email || "",
+        github: singleResumeData?.data[0].github || null,
+        linkedin: singleResumeData?.data[0].linkedin || null,
+        portfolio: singleResumeData?.data[0].portfolio || null,
+      });
+      //experience data populate
+      setExperiences({
+        experiences: singleResumeData?.data[0]?.experiences || [],
+      });
+      //education data populate
+      setEducation({
+        education: singleResumeData?.data[0]?.education || [],
+      });
+      //projects data populate
+      setProjects({
+        projects: singleResumeData?.data[0]?.projects || [],
+      });
+      //skills data populate
+      setSkills({
+        frontend: singleResumeData?.data[0]?.frontend || "",
+        backend: singleResumeData?.data[0]?.backend || "",
+        database: singleResumeData?.data[0]?.database || "",
+        other: singleResumeData?.data[0]?.other || "",
+      });
+      //summary data populate
+      setSummary({
+        summary: singleResumeData?.data[0].summary || "",
+      });
     }
   }, [isSingleResumeSuccess, singleResumeData]);
   const handleNext = () => {
@@ -269,6 +301,7 @@ const ResumeBuilder = () => {
 
   const handleUpdate = async () => {
     try {
+      console.log("handle update function is invoked");
       const obj = {
         ...personalInfo,
         ...summary,
@@ -280,11 +313,17 @@ const ResumeBuilder = () => {
       };
       setIsFormSubmitted(true);
       const response = await updateResume(obj);
+      console.log(response, "<<<response in update resume>>>>");
       if (response?.data?.statusCode === 201) {
         toast.success(response?.data?.message || "Resume Updated Successfully");
         nav("/resume_list");
       }
+      if (response?.error && response?.error?.status === 401) {
+        localStorage.clear("token");
+        nav("/login");
+      }
     } catch (err) {
+      console.log("<<<<error in update resume>>>", err);
       toast.error("An Internal Server Error Occurred");
       console.error(err);
     }
@@ -442,7 +481,7 @@ const ResumeBuilder = () => {
   return (
     <div className="">
       <div className="flex flex-col md:flex-row">
-        {false && (
+        {true && (
           <SidebarTesting
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}

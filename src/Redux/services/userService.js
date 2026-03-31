@@ -85,6 +85,12 @@ export const api = createApi({
         method: "GET",
       }),
     }),
+    getMessageHistory: builder.query({
+      query: (id) => ({
+        url: `/chat/history?with_user_id=${id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -98,4 +104,5 @@ export const {
   useGetResumeQuery,
   useGetSingleResumeQuery,
   useGetAllResumeQuery,
+  useGetMessageHistoryQuery,
 } = api;

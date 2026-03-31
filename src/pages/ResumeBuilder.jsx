@@ -294,6 +294,10 @@ const ResumeBuilder = () => {
         toast.success(response?.data?.message || "Resume Created Successfully");
         nav("/resume_list");
       }
+      if (response?.error && response?.error?.status === 401) {
+        localStorage.clear("token");
+        nav("/login");
+      }
     } catch (err) {
       toast.error("An Internal Server Error Occurred");
     }

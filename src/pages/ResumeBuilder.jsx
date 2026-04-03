@@ -485,7 +485,7 @@ const ResumeBuilder = () => {
   return (
     <div className="">
       <div className="flex flex-col md:flex-row">
-        {false && (
+        {true && (
           <SidebarTesting
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}

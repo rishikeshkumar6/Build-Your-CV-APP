@@ -464,7 +464,7 @@ const ResumeBuilder = () => {
     const resume = document.getElementById("resume-container");
 
     resume.style.width = "794px";
-    resume.style.height = "1123px"; // enforce one page
+    resume.style.height = "auto"; // enforce one page
 
     const canvas = await html2canvas(resume, {
       scale: 2,
@@ -485,7 +485,7 @@ const ResumeBuilder = () => {
   return (
     <div className="">
       <div className="flex flex-col md:flex-row">
-        {true && (
+        {false && (
           <SidebarTesting
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}

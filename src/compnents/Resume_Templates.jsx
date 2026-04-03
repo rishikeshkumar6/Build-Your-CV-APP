@@ -17,7 +17,7 @@ export function DownloadButton({ resumeContainerId }) {
     const resume = document.getElementById("resume-container");
 
     resume.style.width = "794px";
-    resume.style.height = "1123px"; // enforce one page
+    resume.style.height = "auto"; // IMPORTANT // enforce one page
 
     const canvas = await html2canvas(resume, {
       scale: 2,

@@ -199,7 +199,6 @@ export default function ResumeTemplate() {
   const { isSuccess, isLoading, isError, error, data } =
     useGetSingleResumeQuery(id);
   // Inject a temporary <style> that hides everything except the resume
-  console.log("downloadResume data:", data);
   const CONTAINER_ID = "resume-container";
 
   // Support both a flat data object (like your API response) or separate props

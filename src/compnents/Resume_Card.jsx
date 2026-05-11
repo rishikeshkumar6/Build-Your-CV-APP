@@ -28,7 +28,6 @@ export default function ResumeCard({
   handleDelete,
   resume,
 }) {
-  console.log("ResumeCard resume data:", resume);
   const [showMenu, setShowMenu] = useState(false);
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col h-full group relative">

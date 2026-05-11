@@ -6,6 +6,7 @@ import {
   BrowserRouter,
   Navigate,
   Outlet,
+  useLocation,
 } from "react-router-dom";
 //components
 import UserList from "../compnents/UserList";
@@ -30,6 +31,13 @@ import Websocket from "../pages/Websocket";
 import PrivateWebSocket from "../pages/PrivateWebSocket";
 import Chat from "../pages/chat/Chat";
 import ResumeTemplate from "../compnents/Resume_Templates";
+import ChatSidebar from "../pages/chat/Chat_User_List";
+import Chat_Details from "../pages/chat/Chat_Details";
+import ResumeForm from "../pages/dynamic_form/DynamicResumeForm";
+import DynamicFormTemplates from "../pages/dynamic_form/DynamicFormTemplates";
+import ImprovementPoint from "../pages/dynamic_form/ImprovementPoint";
+import ResumeListPage from "../pages/dynamic_form/Ai_Resume";
+import Sidebar from "../compnents/SideBar";
 const Router = () => {
   const dispatch = useDispatch();
   const {
@@ -42,9 +50,9 @@ const Router = () => {
     skip: !localStorage.getItem("token"),
     refetchOnMountOrArgChange: true,
   });
+
   //public route
   const PublicRoutes = () => {
-    console.log(localStorage.getItem("token") && isSuccess);
     if (localStorage.getItem("token")) {
       return <Navigate to="/resume_list" />;
     }
@@ -52,23 +60,37 @@ const Router = () => {
   };
   //private route
   const PrivateRoutes = () => {
+    const location = useLocation();
+    const hideSidebarRoutes = ["/builder", "/peer-to-peer"];
+
+    const shouldHideSidebar = hideSidebarRoutes.some((route) =>
+      location.pathname.startsWith(route),
+    );
     //check for token is exist or not in local storage
     if (!localStorage.getItem("token")) {
       return <Navigate to="/login" />;
     }
     //check if our token is invalid or expire then it is remove the token on our local storage and navigate to login
     if (
-      isError &&
-      error?.status === 401 &&
-      (error?.data?.detail === "Token has expired" ||
-        error?.data?.detail === "Invalid token")
+      (isError &&
+        ((error?.status === 401 &&
+          error?.data?.detail === "Token has expired") ||
+          error?.data?.detail === "Invalid token")) ||
+      error?.status === "FETCH_ERROR"
     ) {
-      console.log("Unauthorized, logging out user.");
       localStorage.removeItem("token");
       dispatch(api.util.removeQueryResult("getResume", undefined));
       return <Navigate to="/login" />;
     }
-    return <Outlet />;
+    return (
+      <div className="flex">
+        {!shouldHideSidebar && <Sidebar />}
+        {/* ✅ Sidebar here */}
+        <div className="flex-1 p-4">
+          <Outlet /> {/* ✅ renders child routes */}
+        </div>
+      </div>
+    );
   };
   return (
     <BrowserRouter>
@@ -78,6 +100,14 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
         </Route>
         <Route element={<PrivateRoutes />}>
+          <Route
+            path="/resume_improvements_details/:id"
+            element={<ImprovementPoint />}
+          />
+          <Route path="/ai_resume" element={<ResumeListPage />} />
+          <Route path="/analyzer" element={<ResumeAnalyzer />} />
+          <Route path="/dynamic_form" element={<ResumeForm />} />
+
           <Route path="/usermanagement" element={<CreateUser />} />
           <Route
             path="/templates/:id"
@@ -169,14 +199,20 @@ const Router = () => {
           <Route path="/resume_list" element={<ResumeCard />} />
           <Route path="/builder" element={<ResumeBuilder />} />
           <Route path="/builder/:id" element={<ResumeBuilder />} />
-          <Route path="/analyzer" element={<ResumeAnalyzer />} />
           <Route path="/private_ws" element={<PrivateWebSocket />} />
-          <Route path="/chat/:id" element={<Chat />} />
+          <Route path="/peer-to-peer" element={<Chat />} />
+          {/* <Route path="/chat/:id" element={<Chat_Details />} /> */}
         </Route>
+
+        <Route
+          path="/dynamic_form_template"
+          element={<DynamicFormTemplates />}
+        />
         <Route path="/imgupload" element={<FileUpload />} />
+
         <Route path="/userlist" element={<UserList />} />
 
-        <Route path="/resume" element={<Resume />} />
+        <Route path="/resume-templates" element={<Resume />} />
 
         <Route path="/sidebar" element={<SidebarTesting />} />
         <Route path="/editor" element={<ResumeEditor />} />

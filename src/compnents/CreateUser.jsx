@@ -27,7 +27,6 @@ const CreateUser = () => {
 
   useEffect(() => {
     if (isSuccess === true) {
-      console.log("-----------", data);
       toast.success(data, {
         autoClose: "2000",
         onClose: () => navigate("/userlist"),
@@ -121,7 +120,6 @@ const CreateUser = () => {
                   <p>All fields are required for user registration</p>
                 </div>
               </div>
-              {console.log(errors, values)}
             </div>
           </Form>
         );

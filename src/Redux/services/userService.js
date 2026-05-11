@@ -85,10 +85,72 @@ export const api = createApi({
         method: "GET",
       }),
     }),
+    getALLUser: builder.query({
+      query: () => ({
+        url: "/user/getall",
+        method: "GET",
+      }),
+    }),
+
     getMessageHistory: builder.query({
       query: (id) => ({
         url: `/chat/history?with_user_id=${id}`,
         method: "GET",
+      }),
+    }),
+    getLastMessageHistory: builder.query({
+      query: () => ({
+        url: `/chat/chat-list`,
+        method: "GET",
+      }),
+    }),
+    uploadResume: builder.mutation({
+      query: (formData) => ({
+        url: "/ai_resumes/analyze-resume",
+        method: "POST",
+        body: formData,
+      }),
+    }),
+    downloadResume: builder.mutation({
+      query: (data) => ({
+        url: "/resume/api/download-resume",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getResumeImprovement: builder.query({
+      query: (id) => ({
+        url: `/ai_resumes/${id}`,
+        method: "GET",
+      }),
+    }),
+    uploadResumeImprovement: builder.mutation({
+      query: (payload) => ({
+        url: `/ai_resumes/${payload.id}`,
+        method: "PUT",
+        body: payload.formData,
+      }),
+      invalidatesTags: [{ type: "Ai_Resume", id: "LIST" }],
+    }),
+    getAllResumeImprovement: builder.query({
+      query: () => ({
+        url: `/ai_resumes`,
+        method: "GET",
+      }),
+      providesTags: [{ type: "Ai_Resume", id: "LIST" }],
+    }),
+    deleteResumeImprovement: builder.mutation({
+      query: (id) => ({
+        url: `/ai_resumes/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "Ai_Resume", id: "LIST" }],
+    }),
+    OauthLogin: builder.mutation({
+      query: (payload) => ({
+        url: "/user/oauth_login",
+        method: "POST",
+        body: payload,
       }),
     }),
   }),
@@ -105,4 +167,13 @@ export const {
   useGetSingleResumeQuery,
   useGetAllResumeQuery,
   useGetMessageHistoryQuery,
+  useGetALLUserQuery,
+  useGetLastMessageHistoryQuery,
+  useUploadResumeMutation,
+  useDownloadResumeMutation,
+  useGetResumeImprovementQuery,
+  useUploadResumeImprovementMutation,
+  useGetAllResumeImprovementQuery,
+  useDeleteResumeImprovementMutation,
+  useOauthLoginMutation,
 } = api;

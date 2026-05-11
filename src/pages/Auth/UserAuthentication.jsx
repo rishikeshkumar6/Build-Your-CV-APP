@@ -3,11 +3,15 @@ import {
   useCreateUserMutation,
   useLoginUserMutation,
 } from "../../Redux/services/userService";
+import { auth, provider } from "./OAuth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
+import { useOauthLoginMutation } from "../../Redux/services/userService";
 
 import Signup from "./Signup";
 import Login from "./Login";
+import { Fullscreen } from "lucide-react";
 
 export default function AuthPanel({ onAuthSuccess }) {
   const navigate = useNavigate();
@@ -26,6 +30,7 @@ export default function AuthPanel({ onAuthSuccess }) {
       error: loginError,
     },
   ] = useLoginUserMutation();
+  const [OauthLogin] = useOauthLoginMutation();
 
   //state to manage mode
   const [mode, setMode] = useState("login"); // 'login' or 'signup'
@@ -37,6 +42,7 @@ export default function AuthPanel({ onAuthSuccess }) {
 
   //signup payload
   const [signup, setSignup] = useState({
+    full_name: "",
     email: "",
     password: "",
   });
@@ -64,12 +70,54 @@ export default function AuthPanel({ onAuthSuccess }) {
         navigate("/resume_list");
       }
     } catch (err) {
+      if (err?.status === "FETCH_ERROR") {
+        toast.error("Network error. Please check your connection.");
+        return;
+      }
       if (err && err?.data?.detail) {
         toast.error(`${err?.data?.detail}`);
       }
     }
   };
   // basic validation helpers
+
+  const handleOauthLogin = async () => {
+    // Implementation for OAuth login
+    try {
+      const result = await signInWithPopup(auth, provider);
+
+      const user = result.user;
+
+      const payload = {
+        full_name: user.displayName,
+        email: user.email,
+        auth_provider: "google",
+      };
+      const response = await OauthLogin(payload).unwrap();
+
+      if (response && response?.token) {
+        localStorage.setItem("token", response?.token);
+        toast.success("Login successful");
+        navigate("/resume_list");
+      }
+
+      // OPTIONAL:
+      // send user to backend
+
+      // Example:
+      // const response = await googleLogin(payload).unwrap();
+
+      // TEMP LOGIN
+      // localStorage.setItem("token", user.accessToken);
+
+      // toast.success("Login successful");
+      //  navigate("/resume_list");
+    } catch (error) {
+      toast.error("Google login failed");
+      console.log(error);
+      // toast.error("Google login failed");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -115,6 +163,7 @@ export default function AuthPanel({ onAuthSuccess }) {
               type="button"
               title="coming soon"
               className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium hover:bg-gray-50"
+              onClick={() => handleOauthLogin()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

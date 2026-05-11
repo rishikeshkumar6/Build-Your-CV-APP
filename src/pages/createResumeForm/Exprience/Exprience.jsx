@@ -13,7 +13,6 @@ const Exprience = ({
   removeResponsibility,
   setExprienceFill,
 }) => {
-  console.log(experiences);
   return (
     <Formik
       enableReinitialize={true}
@@ -30,7 +29,6 @@ const Exprience = ({
       {({ errors, touched, values, setFieldValue }) => (
         <Form>
           <div className="space-y-6">
-            {console.log("<<<errors message is printing>>", errors)}
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-gray-800">
                 Work Experience
@@ -44,7 +42,6 @@ const Exprience = ({
                 Add Experience
               </button>
             </div>
-            {console.log("<<<<values data checking>>>", values)}
             {values?.experiences?.map((exp, expIndex) => (
               <div
                 key={expIndex}
@@ -190,9 +187,6 @@ const Exprience = ({
                           } flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none`}
                           placeholder="Describe your achievement or responsibility..."
                         />
-                        {console.log(
-                          `checking responsibilty ${errors?.experiences}`,
-                        )}
                         {exp.responsibilities.length > 1 && (
                           <button
                             type="button"
@@ -258,8 +252,6 @@ const Exprience = ({
               Next
             </button>
           </div>
-          {console.log("formik values", values)}
-          {console.log("state values", experiences)}
         </Form>
       )}
     </Formik>

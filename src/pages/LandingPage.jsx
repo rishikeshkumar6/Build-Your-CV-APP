@@ -2,277 +2,113 @@ import { Link } from "react-router-dom";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-2">
-              <svg
-                className="w-8 h-8 text-primary-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-              <span className="text-2xl font-bold text-gray-900">
-                ResumeBuilder Pro
-              </span>
+    <div className="relative overflow-hidden bg-white text-gray-900">
+      <div className="absolute inset-x-0 top-0 h-96 bg-[radial-gradient(circle_at_top_right,_rgba(14,165,233,0.1),_transparent_35%)]" />
+      <div className="absolute -bottom-12 left-1/2 h-96 w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,_rgba(59,130,246,0.08),_transparent_55%)] blur-3xl" />
+
+      <nav className="relative z-10 border-b border-gray-200 bg-white">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
+          <Link to="/" className="flex items-center gap-3 text-gray-900">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-100 text-cyan-600 ring-1 ring-cyan-200">
+              RB
             </div>
-            <div className="hidden md:flex space-x-8">
-              <a
-                href="#features"
-                className="text-gray-600 hover:text-primary-600 transition"
-              >
-                Features
-              </a>
-              <a
-                href="#how-it-works"
-                className="text-gray-600 hover:text-primary-600 transition"
-              >
-                How It Works
-              </a>
-              <a
-                href="/resume"
-                className="text-gray-600 hover:text-primary-600 transition"
-              >
-                Templates
-              </a>
+            <div>
+              <p className="text-lg font-semibold tracking-tight">
+                AI Powered Resumes Builder
+              </p>
+              <p className="text-xs text-gray-500">AI-powered resume studio</p>
             </div>
+          </Link>
+
+          <div className="hidden items-center gap-8 text-sm text-gray-600 md:flex">
+            <a href="#features" className="transition hover:text-gray-900">
+              Features
+            </a>
+            <a href="#workflow" className="transition hover:text-gray-900">
+              How It Works
+            </a>
+            <Link to="/resume" className="transition hover:text-gray-900">
+              Templates
+            </Link>
           </div>
         </div>
       </nav>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-        <div className="text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Build Your Perfect Resume
-            <span className="block text-primary-600 mt-2">In Minutes</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Create a professional resume with our intuitive builder or upload
-            your existing resume for AI-powered analysis and improvements.
-          </p>
+      <main className="relative z-10">
+        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <div className="">
+            <div className="w-[100%] lg:w-[100%]">
+              <h1 className="mt-8 text-5xl font-semibold tracking-tight text-gray-900 sm:text-6xl">
+                AI Powered Resumes Builder
+              </h1>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                Create interview-ready resumes with intelligent suggestions,
+                ATS-friendly templates, and one-click downloads. Get tailored
+                feedback from our AI engine and turn experience into
+                opportunity.
+              </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Link
-              to="/builder"
-              className="btn-primary text-lg px-8 py-4 flex items-center space-x-2 w-full sm:w-auto justify-center"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v16m8-8H4"
-                />
-              </svg>
-              <span>Create New Resume</span>
-            </Link>
-            <Link
-              to="/resume"
-              className="btn-primary text-lg px-8 py-4 flex items-center space-x-2 w-full sm:w-auto justify-center"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v16m8-8H4"
-                />
-              </svg>
-              <span>Choose Template</span>
-            </Link>
-            <Link
-              to="/analyzer"
-              className="btn-secondary text-lg px-8 py-4 flex items-center space-x-2 w-full sm:w-auto justify-center"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                />
-              </svg>
-              <span>Upload & Analyze</span>
-            </Link>
-          </div>
-        </div>
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <Link
+                  to="/builder"
+                  className="inline-flex items-center justify-center rounded-full bg-cyan-500 px-8 py-4 text-base font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400"
+                >
+                  Start Building
+                </Link>
+                <Link
+                  to="/analyzer"
+                  className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-gray-50 px-8 py-4 text-base font-semibold text-gray-900 transition hover:border-cyan-400 hover:text-cyan-700"
+                >
+                  Upload Resume
+                </Link>
+              </div>
 
-        <div className="mt-20 grid md:grid-cols-2 gap-8">
-          <div className="card hover:scale-105 transition-transform duration-300">
-            <div className="w-14 h-14 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-              <svg
-                className="w-8 h-8 text-primary-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                />
-              </svg>
+              <div className="mt-12 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-3xl bg-gray-100 p-5 ring-1 ring-gray-200">
+                  <p className="text-sm text-gray-600">Average build time</p>
+                  <p className="mt-2 text-2xl font-semibold text-gray-900">
+                    5 min
+                  </p>
+                </div>
+                <div className="rounded-3xl bg-gray-100 p-5 ring-1 ring-gray-200">
+                  <p className="text-sm text-gray-600">AI suggestions</p>
+                  <p className="mt-2 text-2xl font-semibold text-gray-900">
+                    Smart bullets
+                  </p>
+                </div>
+                <div className="rounded-3xl bg-gray-100 p-5 ring-1 ring-gray-200">
+                  <p className="text-sm text-gray-600">Templates</p>
+                  <p className="mt-2 text-2xl font-semibold text-gray-900">
+                    30+
+                  </p>
+                </div>
+              </div>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">
-              Manual Builder
-            </h3>
-            <p className="text-gray-600 mb-4 leading-relaxed">
-              Choose from professional templates and build your resume
-              step-by-step with our intuitive editor. Add sections, customize
-              layouts, and download in PDF format.
-            </p>
-            <ul className="space-y-2 text-gray-600">
-              <li className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  />
-                </svg>
-                Multiple Professional Templates
-              </li>
-              <li className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  />
-                </svg>
-                Real-time Preview
-              </li>
-              <li className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  />
-                </svg>
-                Export as PDF
-              </li>
-            </ul>
           </div>
+        </section>
 
-          <div className="card hover:scale-105 transition-transform duration-300">
-            <div className="w-14 h-14 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-              <svg
-                className="w-8 h-8 text-cyan-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">
-              AI-Powered Analysis
-            </h3>
-            <p className="text-gray-600 mb-4 leading-relaxed">
-              Upload your existing resume and get instant feedback on what's
-              working and what needs improvement. Then edit directly with our
-              suggestions.
+        <section
+          id="features"
+          className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8"
+        >
+          <div className="text-center">
+            <p className="text-sm uppercase tracking-[0.3em] text-cyan-600">
+              Built for success
             </p>
-            <ul className="space-y-2 text-gray-600">
-              <li className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  />
-                </svg>
-                Intelligent Content Analysis
-              </li>
-              <li className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  />
-                </svg>
-                Section-by-Section Feedback
-              </li>
-              <li className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-green-500 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  />
-                </svg>
-                Direct Editing Tools
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="features" className="bg-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why Choose ResumeBuilder Pro?
+            <h2 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+              Everything your resume needs to stand out.
             </h2>
-            <p className="text-xl text-gray-600">
-              Everything you need to create a standout resume
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
+              Use our AI-enhanced workflow to produce resumes that look
+              professional and perform reliably in applicant tracking systems.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            <div className="rounded-[2rem] border border-gray-200 bg-gray-50 p-8 shadow-xl shadow-gray-100 backdrop-blur-xl">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-100 text-cyan-600">
                 <svg
-                  className="w-8 h-8 text-primary-600"
+                  className="h-7 w-7"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -281,22 +117,29 @@ export default function LandingPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                    d="M12 8c-1.657 0-3 .895-3 2v4c0 1.105 1.343 2 3 2s3-.895 3-2v-4c0-1.105-1.343-2-3-2z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 2.5C9.239 2.5 7 4.738 7 7.5v1.26a8.002 8.002 0 00-4 7.24v.5c0 1.657 1.343 3 3 3h10c1.657 0 3-1.343 3-3v-.5a8.002 8.002 0 00-4-7.24V7.5C17 4.738 14.761 2.5 12 2.5z"
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Lightning Fast
+              <h3 className="mt-6 text-xl font-semibold text-gray-900">
+                Instant AI feedback
               </h3>
-              <p className="text-gray-600">
-                Create a professional resume in under 10 minutes
+              <p className="mt-3 text-gray-600 leading-7">
+                Upload any resume and get AI-driven insights for stronger
+                summaries, bullet points, and keywords.
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="rounded-[2rem] border border-gray-200 bg-gray-50 p-8 shadow-xl shadow-gray-100 backdrop-blur-xl">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-100 text-cyan-600">
                 <svg
-                  className="w-8 h-8 text-primary-600"
+                  className="h-7 w-7"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -305,22 +148,35 @@ export default function LandingPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    d="M12 4.5v15"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7.5 9.75h9"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7.5 14.25h9"
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                ATS-Friendly
+              <h3 className="mt-6 text-xl font-semibold text-gray-900">
+                Modern templates
               </h3>
-              <p className="text-gray-600">
-                Optimized to pass Applicant Tracking Systems
+              <p className="mt-3 text-gray-600 leading-7">
+                Choose from polished, recruiter-friendly layouts that adapt to
+                any industry.
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="rounded-[2rem] border border-gray-200 bg-gray-50 p-8 shadow-xl shadow-gray-100 backdrop-blur-xl">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-100 text-cyan-600">
                 <svg
-                  className="w-8 h-8 text-primary-600"
+                  className="h-7 w-7"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -329,25 +185,72 @@ export default function LandingPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                    d="M9 17v-6a3 3 0 016 0v6"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 17h14"
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Fully Customizable
+              <h3 className="mt-6 text-xl font-semibold text-gray-900">
+                ATS-ready export
               </h3>
-              <p className="text-gray-600">
-                Tailor every section to match your unique profile
+              <p className="mt-3 text-gray-600 leading-7">
+                Download clean PDF resumes that stay readable by both hiring
+                managers and applicant tracking systems.
               </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-400">
-            &copy; 2024 ResumeBuilder Pro. All rights reserved.
+        <section
+          id="workflow"
+          className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8"
+        >
+          <div className="grid gap-10 md:grid-cols-3">
+            {[
+              {
+                title: "Start with AI",
+                description:
+                  "Enter your details or upload your resume to get instant structure and section recommendations.",
+              },
+              {
+                title: "Refine and customize",
+                description:
+                  "Edit your resume with intuitive controls, smart section suggestions, and polished content.",
+              },
+              {
+                title: "Download and apply",
+                description:
+                  "Export a recruiter-ready PDF and keep your profile updated for every opportunity.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-[2rem] border border-gray-200 bg-gray-50 p-8 shadow-xl shadow-gray-100"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">
+                  Step
+                </p>
+                <h3 className="mt-4 text-2xl font-semibold text-gray-900">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-gray-600 leading-7">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-gray-200 bg-gray-50 py-10 text-center text-gray-600">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p>
+            &copy; 2026 ResumeBuilder Pro. Crafted for modern career builders.
           </p>
         </div>
       </footer>

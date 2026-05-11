@@ -120,7 +120,6 @@ const Skill = ({
               Next
             </button>
           </div>
-          {console.log("errors checking", errors)}
         </Form>
       )}
     </Formik>

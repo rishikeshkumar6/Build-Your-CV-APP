@@ -14,6 +14,24 @@ const Signup = ({ signup, setSignup, handleSignup, isCreateUserLoading }) => {
       {({ errors, touched, isSubmitting, values }) => (
         <Form className="flex gap gap-4 flex-col">
           <div>
+            <label htmlFor="full_name" className="sr-only">
+              Full Name
+            </label>
+            <Field
+              name="full_name"
+              type="text"
+              autoComplete="name"
+              required
+              className="appearance-none rounded block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Full Name"
+            />
+            <ErrorMessage
+              name="full_name"
+              component={"div"}
+              className="text-red-600 text-sm mt-1"
+            />
+          </div>
+          <div>
             <label htmlFor="email-address" className="sr-only">
               Email address
             </label>

@@ -25,7 +25,6 @@ const Personal_Info = ({
       {({ errors, touched, values }) => (
         <Form>
           <div className="space-y-6">
-            {console.log("<<<<errors>>>", errors)}
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Personal Information
             </h2>

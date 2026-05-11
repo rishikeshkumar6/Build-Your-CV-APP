@@ -13,7 +13,6 @@ function Websocket() {
     };
 
     ws.onmessage = (event) => {
-      console.log("Message from server ", event);
       setMessages((prev) => [...prev, JSON.parse(event.data).data.text]);
     };
 

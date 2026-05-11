@@ -12,7 +12,6 @@ const Projects = ({
   addProject,
   removeProject,
 }) => {
-  console.log(projects);
   return (
     <Formik
       enableReinitialize={true}
@@ -188,7 +187,6 @@ const Projects = ({
             >
               Next
             </button>
-            {console.log("values", values)}
           </div>
         </Form>
       )}

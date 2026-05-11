@@ -57,7 +57,7 @@ const SidebarTesting = ({
                 className={`text-yellow-300 ml-3 hand-wave-animation rotate-[15deg]`}
               />
             </h2>
-            <h3 className="text-[15px]">Please complete your KYC</h3>
+            <h3 className="text-[15px]">Please complete your All Steps</h3>
           </>
         )}
       </div>

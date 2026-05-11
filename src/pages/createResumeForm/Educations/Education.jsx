@@ -167,7 +167,6 @@ const Education = ({
               Next
             </button>
           </div>
-          {console.log("error checking", errors)}
         </Form>
       )}
     </Formik>

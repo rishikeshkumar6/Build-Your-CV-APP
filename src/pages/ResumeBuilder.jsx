@@ -305,7 +305,6 @@ const ResumeBuilder = () => {
 
   const handleUpdate = async () => {
     try {
-      console.log("handle update function is invoked");
       const obj = {
         ...personalInfo,
         ...summary,
@@ -317,7 +316,6 @@ const ResumeBuilder = () => {
       };
       setIsFormSubmitted(true);
       const response = await updateResume(obj);
-      console.log(response, "<<<response in update resume>>>>");
       if (response?.data?.statusCode === 201) {
         toast.success(response?.data?.message || "Resume Updated Successfully");
         nav("/resume_list");
@@ -327,14 +325,11 @@ const ResumeBuilder = () => {
         nav("/login");
       }
     } catch (err) {
-      console.log("<<<<error in update resume>>>", err);
       toast.error("An Internal Server Error Occurred");
-      console.error(err);
     }
   };
 
   const addExperience = (values, setFieldValue) => {
-    console.log("<<<<addExprince function is invoke>>>>");
     const exprince = { ...values };
     exprince.experiences.push({
       position: "",
@@ -348,7 +343,6 @@ const ResumeBuilder = () => {
   };
 
   const removeExperience = (id, values, setFieldValue) => {
-    console.log("remove exprince index", id, "values", values);
     let value = { ...values };
     value.experiences = value?.experiences?.filter(
       (elem, index) => index !== id,
@@ -366,7 +360,6 @@ const ResumeBuilder = () => {
   };
 
   const addResponsibility = (expId, values, setFieldValue) => {
-    console.log("addResponsbility", expId);
     const responsibility = JSON.parse(JSON.stringify(values));
     responsibility.experiences[expId].responsibilities.push("");
     setFieldValue("experiences", responsibility.experiences);
@@ -389,7 +382,6 @@ const ResumeBuilder = () => {
   };
 
   const removeResponsibility = (expId, id, values, setFieldValue) => {
-    console.log("<<<<index testing>>>>", expId, id);
     const deleteResponsibility = JSON.parse(JSON.stringify(values));
     deleteResponsibility.experiences[expId].responsibilities =
       deleteResponsibility.experiences[expId].responsibilities.filter(
@@ -399,7 +391,6 @@ const ResumeBuilder = () => {
   };
 
   const addProject = (values, setFieldValue) => {
-    console.log("add project function is invoke");
     const project = { ...values };
     project.projects.push({
       name: "",
@@ -412,7 +403,6 @@ const ResumeBuilder = () => {
   };
 
   const removeProject = (projIndex, values, setFieldValue) => {
-    console.log("remove project function is invoke");
     const project = { ...values };
     project.projects = project.projects.filter(
       (proj, index) => index !== projIndex,
@@ -431,7 +421,6 @@ const ResumeBuilder = () => {
 
   const addEducation = (values, setFieldValue) => {
     const education = { ...values };
-    console.log(education);
     education.education.push({
       degree: "",
       institution: "",
@@ -442,7 +431,6 @@ const ResumeBuilder = () => {
   };
 
   const removeEducation = (eduIndex, values, setFieldValue) => {
-    console.log("remove education function is invoke");
     const education = { ...values };
     education.education = education.education.filter(
       (edu, index) => index !== eduIndex,

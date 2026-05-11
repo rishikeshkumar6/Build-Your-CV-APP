@@ -14,20 +14,21 @@ function FileUpload() {
       setMessage("Please select a file");
       return;
     }
-    console.log("<<<<<file path checking>>>", file);
     const formData = new FormData();
     formData.append("file", file);
-
     try {
-      const res = await axios.post(" http://127.0.0.1:8000/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await axios.post(
+        "http://127.0.0.1:8000/chat/analyze-resume",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
       setMessage(res.data.message);
     } catch (err) {
       setMessage("Upload failed: " + err.response?.data?.message);
     }
   };
-  console.log("<<<file checking>>", file);
 
   return (
     <div style={{ padding: "20px" }}>

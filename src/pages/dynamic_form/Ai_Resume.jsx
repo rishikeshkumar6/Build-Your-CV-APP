@@ -248,7 +248,7 @@ export default function ResumeListPage() {
       r.name.toLowerCase().includes(search.toLowerCase()) ||
       r.email.toLowerCase().includes(search.toLowerCase()) ||
       r.location.toLowerCase().includes(search.toLowerCase()) ||
-      r.skills.some((s) => s.toLowerCase().includes(search.toLowerCase())),
+      r.skills.some((s) => s.name.toLowerCase().includes(search.toLowerCase())),
   );
 
   const downloadResume = async (data) => {
@@ -263,7 +263,7 @@ export default function ResumeListPage() {
       experience: data?.experiences || [],
       education: data?.educations || [],
       projects: data?.projects || [],
-      certifications: data?.certifications || [],
+      certifications: data?.certifications?.map((cert) => cert.name) || [],
     };
     try {
       const response = await fetch(

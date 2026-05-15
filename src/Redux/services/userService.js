@@ -123,6 +123,7 @@ export const api = createApi({
         url: `/ai_resumes/${id}`,
         method: "GET",
       }),
+      providesTags: [{ type: "Ai_Resume", id: "LIST" }],
     }),
     uploadResumeImprovement: builder.mutation({
       query: (payload) => ({

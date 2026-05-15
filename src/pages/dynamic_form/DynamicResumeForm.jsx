@@ -180,7 +180,7 @@ export default function ResumeForm({ data, id }) {
     experience: data?.experiences || [],
     education: data?.educations || [],
     projects: data?.projects || [],
-    certifications: data?.certifications || [],
+    certifications: data?.certifications?.map((cert) => cert.name) || [],
   };
 
   const downloadResume = async (data) => {
@@ -258,7 +258,7 @@ export default function ResumeForm({ data, id }) {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ values, setFieldValue }) => (
+          {({ errors, values, setFieldValue }) => (
             <Form className="space-y-5">
               {/* ── Personal Details ── */}
               <Card>
@@ -546,6 +546,8 @@ export default function ResumeForm({ data, id }) {
                   Save &amp; generate resume
                 </button>
               </div>
+              {console.log("Form values:", values)}
+              {console.log("Form errors:", errors)}
             </Form>
           )}
         </Formik>

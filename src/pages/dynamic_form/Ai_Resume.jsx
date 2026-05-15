@@ -267,7 +267,7 @@ export default function ResumeListPage() {
     };
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}resume/api/download-resume`,
+        `${import.meta.env.VITE_API_BASE_URL}/resume/api/download-resume`,
         {
           method: "POST",
           headers: {

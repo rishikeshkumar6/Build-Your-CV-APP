@@ -264,6 +264,8 @@ export default function ResumeListPage() {
       education: data?.educations || [],
       projects: data?.projects || [],
       certifications: data?.certifications?.map((cert) => cert.name) || [],
+      achievements: data?.achievements?.map((ach) => ach.name) || [],
+      languages: data?.languages?.map((lang) => lang.name) || [],
     };
     try {
       const response = await fetch(

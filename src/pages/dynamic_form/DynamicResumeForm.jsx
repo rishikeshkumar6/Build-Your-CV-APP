@@ -46,7 +46,10 @@ const initialValues = {
     },
   ],
   certifications: [""],
+  languages: [],
+  achievements: [""],
   newSkill: "",
+  newLanguage: "",
 };
 
 // ─── Validation Schema ────────────────────────────────────────────────────────
@@ -80,6 +83,8 @@ const validationSchema = Yup.object({
     }),
   ),
   certifications: Yup.array().of(Yup.string()),
+  languages: Yup.array().of(Yup.string()),
+  achievements: Yup.array().of(Yup.string()),
 });
 
 // ─── Reusable Components ──────────────────────────────────────────────────────
@@ -181,6 +186,14 @@ export default function ResumeForm({ data, id }) {
     education: data?.educations || [],
     projects: data?.projects || [],
     certifications: data?.certifications?.map((cert) => cert.name) || [],
+    languages:
+      data?.languages?.map((lang) =>
+        typeof lang === "string" ? lang : lang.name,
+      ) || [],
+    achievements:
+      data?.achievements?.map((ach) =>
+        typeof ach === "string" ? ach : ach.title || ach.name || ach,
+      ) || [],
   };
 
   const downloadResume = async (data) => {
@@ -221,7 +234,7 @@ export default function ResumeForm({ data, id }) {
 
   const handleSubmit = async (values) => {
     try {
-      const { newSkill, ...formData } = values;
+      const { newSkill, newLanguage, ...formData } = values;
       const response = await uploadResumeImprovement({
         id: id,
         formData,
@@ -528,6 +541,125 @@ export default function ResumeForm({ data, id }) {
                       <AddButton
                         onClick={() => push("")}
                         label="Add certification"
+                      />
+                    </>
+                  )}
+                </FieldArray>
+              </Card>
+
+              {/* ── Languages ── */}
+              <Card>
+                <SectionHeader icon="🌐" title="Languages" />
+                <FieldArray name="languages">
+                  {({ remove }) => (
+                    <>
+                      {/* Tag pills display */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {values.languages.length === 0 && (
+                          <p className="text-xs text-slate-300 italic">
+                            No languages added yet
+                          </p>
+                        )}
+                        {values.languages.map((lang, idx) => (
+                          <span
+                            key={idx}
+                            className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-full text-xs font-medium"
+                          >
+                            {lang}
+                            <button
+                              type="button"
+                              onClick={() => remove(idx)}
+                              className="text-emerald-300 hover:text-red-400 leading-none text-sm transition-colors"
+                            >
+                              ×
+                            </button>
+                          </span>
+                        ))}
+                      </div>
+                      {/* Add input */}
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="e.g. English (Native), Hindi (Fluent)..."
+                          value={values.newLanguage}
+                          onChange={(e) =>
+                            setFieldValue("newLanguage", e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              const v = values.newLanguage.trim();
+                              if (v && !values.languages.includes(v)) {
+                                setFieldValue("languages", [
+                                  ...values.languages,
+                                  v,
+                                ]);
+                                setFieldValue("newLanguage", "");
+                              }
+                            }
+                          }}
+                          className="flex-1 px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white text-slate-800 placeholder-slate-300 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const v = values.newLanguage.trim();
+                            if (v && !values.languages.includes(v)) {
+                              setFieldValue("languages", [
+                                ...values.languages,
+                                v,
+                              ]);
+                              setFieldValue("newLanguage", "");
+                            }
+                          }}
+                          className="px-4 py-2 text-xs font-semibold bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors"
+                        >
+                          Add
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </FieldArray>
+              </Card>
+
+              {/* ── Achievements ── */}
+              <Card>
+                <SectionHeader icon="🏆" title="Achievements" />
+                <FieldArray name="achievements">
+                  {({ push, remove }) => (
+                    <>
+                      <div className="space-y-2 mb-2">
+                        {values.achievements.length === 0 && (
+                          <p className="text-xs text-slate-300 italic mb-2">
+                            No achievements added yet
+                          </p>
+                        )}
+                        {values.achievements.map((_, idx) => (
+                          <div key={idx} className="flex gap-2 items-start">
+                            <div className="flex-1 relative">
+                              <span className="absolute left-3 top-2.5 text-amber-400 text-sm select-none">
+                                🏅
+                              </span>
+                              <Field
+                                name={`achievements.${idx}`}
+                                placeholder="e.g. Reduced API latency by 40% through caching optimisation..."
+                                className="w-full pl-8 pr-3 py-2 text-sm border border-slate-200 rounded-lg bg-white text-slate-800 placeholder-slate-300 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
+                              />
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => remove(idx)}
+                              disabled={values.achievements.length === 1}
+                              className="px-3 py-2 text-slate-300 hover:text-red-400 disabled:opacity-30 disabled:cursor-not-allowed text-lg leading-none transition-colors"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                      <AddButton
+                        onClick={() => push("")}
+                        label="Add achievement"
                       />
                     </>
                   )}
